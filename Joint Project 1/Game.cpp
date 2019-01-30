@@ -47,7 +47,7 @@ Game::Game() : window(sf::VideoMode(static_cast<int>(SCREEN_WIDTH), static_cast<
 {
 	title.setupOptionsAndPointers();
 	title.setupText();
-
+	playerOne.loadTextures();
 }
 
 void Game::loadContent()
@@ -128,9 +128,30 @@ void Game::update()
 	// get keyboard input
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
+		playerOne.setDirection(	WEST) ;
+		playerOne.playerMovement();
+
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
+		playerOne.setDirection(EAST);
+		playerOne.playerMovement();
+
+
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		playerOne.setDirection(NORTH);
+		playerOne.playerMovement();
+
+
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		playerOne.setDirection(SOUTH);
+		playerOne.playerMovement();
+
+
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
@@ -140,7 +161,6 @@ void Game::update()
 		title.exitGame();
 	}
 	// update any game variables here ...
-
 }
 
 void Game::draw()
@@ -155,6 +175,10 @@ void Game::draw()
 	if (title.getExisting() == true)
 	{
 		title.Draw(window);
+	}
+	if (title.getExisting() == false && title.getNewGame() == true)
+	{
+		window.draw(playerOne.getBody());
 	}
 	window.display();
 }
