@@ -22,6 +22,7 @@ class Game
 public:
 	MainMenu title;
 	Player playerOne;
+	
 	sf::Font m_font;  // font for writing text
 	sf::Text m_message;  // text to write on the screen
 

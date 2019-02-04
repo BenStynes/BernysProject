@@ -11,28 +11,63 @@ void Player::increaseScore()
 
 void Player::playerMovement()
 {
-	if (direction == WEST)
+	
+	
+		if (direction == WEST)
+		{
+			body.move(1.0f, 0.0f);
+			body.setTexture(directionTextureWest);
+
+
+		}
+		if (direction == EAST)
+		{
+			body.move(-1.0f, 0.0f);
+			body.setTexture(directionTextureEast);
+		}
+		if (direction == NORTH)
+		{
+			body.move(0.0f, -1.0f);
+			body.setTexture(directionTextureNorth);
+
+
+		}
+		if (direction == SOUTH)
+		{
+			body.move(0.0f, 1.0f);
+			body.setTexture(directionTextureSouth);
+		}
+	
+
+
+ if (body.getPosition().x < 0)
 	{
-		body.move(-1.0f,0.0f);
-		
-		
-	}
-	if (direction == EAST)
+
+		body.setPosition(body.getPosition().x + 17,body.getPosition().y);
+ }
+
+ if (body.getPosition().y < 0)
 	{
-		body.move(1.0f, 0.0f);
-		
+
+		body.setPosition(body.getPosition().x ,body.getPosition().y + 17);
 	}
-	if (direction == NORTH)
+
+
+	 if (body.getPosition().x > SCREEN_WIDTH - 50)
 	{
-		body.move(0.0f, -1.0f);
-		body.setTextureRect(sf::IntRect(84, 250, 84, 74));
-		
+
+		body.setPosition(body.getPosition().x - 17, body.getPosition().y);
 	}
-	if (direction == SOUTH)
+
+ if (body.getPosition().y > SCREEN_HEIGHT - 50)
 	{
-		body.move(0.0f, 1.0f);
-		body.setTextureRect(sf::IntRect(84, 0, 84, 74));
+
+		body.setPosition(body.getPosition().x, body.getPosition().y - 17);
 	}
+
+
+
+
 }
 
 void Player::playerDeath()
@@ -99,19 +134,20 @@ void Player::setBody(sf::Sprite t_body)
 	body = t_body;
 }
 
-sf::Texture Player::getTexture()
+void Player::setPostion(float t_x, float t_y)
 {
-	return directionTexture;
+	body.setPosition(t_x, t_y);
 }
 
-void Player::setTexture(sf::Texture t_texture)
-{
-	directionTexture = t_texture;
-}
 
 void Player::loadTextures()
 {
 
-	directionTexture.loadFromFile("ASSETS\\IMAGES\\player.png");
-	body.setTexture(directionTexture);
+	directionTextureNorth.loadFromFile("ASSETS\\IMAGES\\player_up.png");
+	directionTextureSouth.loadFromFile("ASSETS\\IMAGES\\player_down.png");
+	directionTextureEast.loadFromFile("ASSETS\\IMAGES\\player_left.png");
+	directionTextureWest.loadFromFile("ASSETS\\IMAGES\\player_right.png");
+
+
+	body.setTexture(directionTextureNorth);
 }

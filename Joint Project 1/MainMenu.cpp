@@ -18,7 +18,7 @@ void MainMenu::setupText()
 	titleText.setFillColor(sf::Color::Red);
 	titleText.setCharacterSize(76);
 	titleText.setPosition({ 350.0f, 150.0f });
-	titleText.setString("Suicide Quest");
+	titleText.setString("Adventure Quest");
 	for (int i = 0; i < MAX_OPTIONS; i++)
 	{
 		menuText[i].setFont(overallText);

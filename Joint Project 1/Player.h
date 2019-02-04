@@ -12,7 +12,10 @@ private:
 	int score{};
 	int timer{};
 	sf::Sprite body{};
-	sf::Texture directionTexture{};
+	sf::Texture directionTextureNorth{};
+	sf::Texture directionTextureSouth{};
+	sf::Texture directionTextureEast{};
+	sf::Texture directionTextureWest{};
 	bool  alive{};
 
 public:
@@ -31,7 +34,6 @@ public:
 	void setScore(int t_score);
 	sf::Sprite getBody();
 	void setBody(sf::Sprite t_body);
-	sf::Texture getTexture();
-	void setTexture(sf::Texture t_texture);
+	void setPostion(float t_x, float t_y);
 	void loadTextures();
 };

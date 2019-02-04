@@ -48,6 +48,7 @@ Game::Game() : window(sf::VideoMode(static_cast<int>(SCREEN_WIDTH), static_cast<
 	title.setupOptionsAndPointers();
 	title.setupText();
 	playerOne.loadTextures();
+	playerOne.setPostion(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 }
 
 void Game::loadContent()
@@ -123,36 +124,37 @@ void Game::run()
 void Game::update()
 // This function takes the keyboard input and updates the game world
 {
-
-
-	// get keyboard input
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if(title.getNewGame() == true)
 	{
-		playerOne.setDirection(	WEST) ;
-		playerOne.playerMovement();
-
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	// get keyboard input
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		playerOne.setDirection(EAST);
 		playerOne.playerMovement();
 
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		playerOne.setDirection(WEST);
+		playerOne.playerMovement();
+
 
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		playerOne.setDirection(NORTH);
 		playerOne.playerMovement();
 
 
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		playerOne.setDirection(SOUTH);
 		playerOne.playerMovement();
 
 
 	}
+}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
 
